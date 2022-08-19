@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scorpio-aaio
+  labels:
+    app: scorpio-aaio
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: scorpio-aaio
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scorpio-aaio
+    spec:
+      containers:
+      - image: {{ .Values.mainRepo }}/digitaltwin:scorpio-aaio_{{ .Values.scorpio.tag }}
+        env:
+          - name: CLIENT_ID
+            value: {{ .Values.keycloak.scorpio.client }}
+          - name: REALM
+            value: {{ .Values.keycloak.scorpio.realm }}
+        {{- range $key, $val := .Values.postgres_vars}}
+          - name: {{ $key }}
+            value: {{ $val | quote }}
+        {{- end }}
+          - name: KEYCLOAK_SERVER_URL
+            value: {{ .Values.keycloak.externalAuthService.protocol }}//{{ .Values.keycloak.externalAuthService.domainname }}{{.Values.keycloak.externalAuthService.path }}
+          - name: POSTGRES_SERVICE
+            value: {{ .Values.clusterSvcName }}
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.db.dbUser -}}.{{- .Values.clusterSvcName -}}.{{- .Values.db.secretPostfix }}
+                key: password
+        {{- range $key, $val := .Values.keycloak_vars}}
+          - name: {{ $key }}
+            value: {{ $val | quote }}
+        {{- end }}
+        {{- range $key, $val := .Values.kafka_vars }}
+          - name: {{ $key }}
+            value: {{ $val | quote }}
+        {{- end }}
+        {{- if .Values.springArgs.overrideSpringArgs }}
+        env:
+          - name: spring_args
+            value: {{ .Values.springArgs.value }}
+        {{- end}}
+        imagePullPolicy: Always
+        name: scorpio-aaio
+        ports:
+        - containerPort: 27015
+          protocol: TCP

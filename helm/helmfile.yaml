@@ -63,7 +63,7 @@ releases:
   - keycloak
 - name: scorpio
   labels:
-    order: second
+    order: third
   chart: ./charts/scorpio
   namespace: {{ .Values.namespace }}
   values:

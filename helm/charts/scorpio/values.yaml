@@ -44,7 +44,7 @@ springArgs:
 ################################### adapter service #######################################################################
 adapter:
 ## Enable the adapter deployment & service
-  enabled: true 
+  enabled: false 
   name: adapter
 ## Number of adapter instances to deploy
 ##
@@ -66,7 +66,7 @@ adapter:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -76,17 +76,13 @@ adapter:
 ## adapter containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits: 
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests: 
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits: 
+     cpu: 100m
+     memory: 100Mi
+   requests: 
+     cpu: 50m
+     memory: 50Mi
   
 
   
@@ -106,7 +102,7 @@ adapter:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -114,7 +110,7 @@ adapter:
 ################################### Eureka Server #######################################################################
 eureka:
 ## Enable the eureka deployment & service
-  enabled: true
+  enabled: false
   name: eureka
 ## Number of eureka instances to deploy
 ##
@@ -135,7 +131,7 @@ eureka:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -144,23 +140,19 @@ eureka:
 ## eureka containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## eureka containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -181,7 +173,7 @@ eureka:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -189,7 +181,7 @@ eureka:
 ################################### Gateway ##########################################################################
 gateway:
 ## Enable the gateway deployment & service
-  enabled: true
+  enabled: false
   name: gateway
 ## Number of gateway instances to deploy
 ##
@@ -210,7 +202,7 @@ gateway:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -218,23 +210,19 @@ gateway:
 ## gateway containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## gateway containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -255,7 +243,7 @@ gateway:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -263,7 +251,7 @@ gateway:
 ################################### AtContextServer ##########################################################################
 AtContextServer:
 ## Enable the AtContextServer deployment & service
-  enabled: true
+  enabled: false
   name: at-context-server
 ## Number of AtContextServer instances to deploy
 ##
@@ -284,7 +272,7 @@ AtContextServer:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -292,23 +280,19 @@ AtContextServer:
 ## AtContextServer containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## AtContextServer containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -329,7 +313,7 @@ AtContextServer:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -337,7 +321,7 @@ AtContextServer:
 ################################### ConfigServer ##########################################################################
 ConfigServer:
 ## Enable the ConfigServer deployment & service
-  enabled: true
+  enabled: false
   name: config-server
 ## Number of ConfigServer instances to deploy
 ##
@@ -358,7 +342,7 @@ ConfigServer:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -366,23 +350,19 @@ ConfigServer:
 ## ConfigServer containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## ConfigServer containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -403,7 +383,7 @@ ConfigServer:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -411,7 +391,7 @@ ConfigServer:
 ################################### EntityManager ##########################################################################
 EntityManager:
 ## Enable the EntityManager deployment & service
-  enabled: true
+  enabled: false
   name: entity-manager
 ## Number of EntityManager instances to deploy
 ##
@@ -432,7 +412,7 @@ EntityManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -440,23 +420,19 @@ EntityManager:
 ## EntityManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## EntityManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -477,7 +453,7 @@ EntityManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -485,7 +461,7 @@ EntityManager:
 ################################### HistoryManager ##########################################################################
 HistoryManager:
 ## Enable the HistoryManager deployment & service
-  enabled: true
+  enabled: false
   name: history-manager
 ## Number of HistoryManager instances to deploy
 ##
@@ -506,7 +482,7 @@ HistoryManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -514,23 +490,19 @@ HistoryManager:
 ## HistoryManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## HistoryManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -551,7 +523,7 @@ HistoryManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -559,7 +531,7 @@ HistoryManager:
 ################################### QueryManager ##########################################################################
 QueryManager:
 ## Enable the QueryManager deployment & service
-  enabled: true
+  enabled: false
   name: query-manager
 ## Number of QueryManager instances to deploy
 ##
@@ -580,7 +552,7 @@ QueryManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -588,23 +560,19 @@ QueryManager:
 ## QueryManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## QueryManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -625,7 +593,7 @@ QueryManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -633,7 +601,7 @@ QueryManager:
 ################################### RegistryManager ##########################################################################
 RegistryManager:
 ## Enable the RegistryManager deployment & service
-  enabled: true
+  enabled: false
   name: registry-manager
 ## Number of RegistryManager instances to deploy
 ##
@@ -654,7 +622,7 @@ RegistryManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -662,23 +630,19 @@ RegistryManager:
 ## RegistryManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## RegistryManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -699,7 +663,7 @@ RegistryManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -707,7 +671,7 @@ RegistryManager:
 ################################### StorageManager ##########################################################################
 StorageManager:
 ## Enable the StorageManager deployment & service
-  enabled: true
+  enabled: false
   name: storage-manager
 ## Number of StorageManager instances to deploy
 ##
@@ -728,7 +692,7 @@ StorageManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -736,23 +700,19 @@ StorageManager:
 ## StorageManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## StorageManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -773,7 +733,7 @@ StorageManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
@@ -782,7 +742,7 @@ StorageManager:
 ################################### SubscriptionManager ##########################################################################
 SubscriptionManager:
 ## Enable the SubscriptionManager deployment & service
-  enabled: true
+  enabled: false
   name: subscription-manager
 ## Number of SubscriptionManager instances to deploy
 ##
@@ -803,7 +763,7 @@ SubscriptionManager:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 ##
   securityContext:
-    enabled: true
+    enabled: false
     settings:
       runAsNonRoot: true
       runAsUser: 1000
@@ -811,23 +771,19 @@ SubscriptionManager:
 ## SubscriptionManager containers' resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to use HPA or specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 250m
-  #   memory: 1Gi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+  resources:
+   limits:
+     cpu: 100m
+     memory: 100Mi
+   requests:
+     cpu: 50m
+     memory: 50Mi
 
 ## SubscriptionManager containers'  readiness probes. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 ##
   readinessProbe:
-   enabled: true
+   enabled: false
    initialDelaySeconds: 40
    failureThreshold: 6
    periodSeconds: 10
@@ -848,7 +804,134 @@ SubscriptionManager:
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 ##
   hpa:
-   enabled: true
+   enabled: false
    minReplicas: 1
    maxReplicas: 5
    targetCPUUtilizationPercentage: 80
+
+
+mainVersion: 0.1
+mainRepo: ibn40
+namespace: iff
+pullSecretCredentials: regcred
+ingressType: traefik # or nginx
+
+keycloak:
+  adminName: admin
+  externalAuthService:   # put here the *external* keycloak name, i.e. through ingress 
+    protocol: "http:"
+    domainname: keycloak.local
+    path: /auth
+  internalAuthService: 
+    name: keycloak-discovery
+    port: 8080
+    path: /auth
+  alerta:
+    clientSecret: keycloak-client-secret-alerta-ui
+    realm: iff
+    client: alerta-ui
+    redirectUris:
+    - http://alerta.local/*
+    - https://alerta.local/*
+    defaultClientScopes:
+    - openid
+    - profile
+    - email
+    - roles
+  scorpio:
+    realm: iff
+    client: scorpio
+  ngsildUpdates:
+    realm: iff
+    client: ngsild-updates
+    serviceRole: scorpio.Factory-Admin
+
+db:
+  teamId: acid
+  clusterSvcPostfix: cluster
+  svcPort: 5432
+  pvSize: 1Gi
+  podInstances: 2
+  alertaDb: monitoring
+  dbUser: ngb
+  scorpioDb: ngb
+  secretPostfix: credentials.postgresql.acid.zalan.do
+
+scorpio:
+  tag: 3.0.0-SNAPSHOT
+  externalHostname: ngsild.local
+  externalProtocol: "http:"
+  internalHostname: gateway
+  internalPort: 9090
+  internalProtocol: "http:"
+
+
+certmanager:
+  secret: selfsigned-cert-tls
+  issuer: letsencrypt-self
+
+flink:
+  imageTag: 1.14.3
+  clusterId: iff
+  taskmanagers: 1
+  jobmanager: 1
+  sqlClientPort: 9000
+  bucket: flink
+  haDir: recovery
+  checkpointDir: checkpoints
+  savepointDir: savepoints
+  defaultParalellism: 1
+  alertWindow: '0.001'
+  ngsildUpdateWindow: '0.001'
+
+minio:
+  url: http://minio
+  endpoint: minio
+  adminAccessKey: console
+  userAccessKey: minio
+  storageSize: 10G
+  healthPath: /minio/health/live
+  mcImage: minio/mc:RELEASE.2022-02-07T09-25-34Z
+
+alerta:
+  alertaAdminUser: admin
+  internalService: alerta
+  internalPort: 8080
+  internalProtocol: "http:"
+
+kafka:
+  name: my-cluster
+  bootstrapServer: my-cluster-kafka-bootstrap:9092
+  storage:
+    type: persistent-claim
+    size: 5Gi
+  zookeeper:
+    replicas: 1
+    storage:
+      type: persistent-claim
+      size: 1Gi
+  connect:
+    debeziumTopicPrefix: iff.ngsild
+    tableIncludeList: public.entity$
+    image: debezium-postgresql-connector
+
+kafkaBridge:
+  debezium:
+    replicaCount: 1
+    listenTopic: "iff.ngsild.public.entity"
+    listenTopicRetention: 86400000
+    entityTopicPrefix: "iff.ngsild.entities"
+    attributesTopic: "iff.ngsild.attributes"
+    entityTopicRetention: 604800000
+    attributesTopicRetention: 86400000
+  alerta:
+    replicaCount: 1
+    listenTopic: "iff.alerts"
+    bulkTopic: "iff.alerts.bulk"
+    bulkTopicRetention: 300000
+    listenTopicRetention: 86400000
+  ngsildUpdates:
+    replicaCount: 1
+    tokenRefreshInterval: 200
+    listenTopic: "iff.ngsild-updates"
+    listenTopicRetention: 86400000
