@@ -26,7 +26,6 @@ PLASMACUTTER_ID=urn:plasmacutter-test:12345
 GEOCUTTER_ID=urn:geocutter-test:12345
 cat << EOF > ${CUTTER}
 {
-    "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld",
     "id": "${PLASMACUTTER_ID}",
     "type": "https://industry-fusion.com/types/v0.9/${KAFKACAT_ENTITY_PLASMACUTTER_NAME}",
     "https://industry-fusion.com/types/v0.9/state": [
@@ -94,7 +93,6 @@ EOF
 
 cat << EOF > ${CUTTER_TIMESTAMPED}
 {
-    "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
     "id": "${PLASMACUTTER_ID}",
     "type": "https://industry-fusion.com/types/v0.9/${KAFKACAT_ENTITY_PLASMACUTTER_NAME}",
     "https://industry-fusion.com/types/v0.9/state": [
@@ -128,7 +126,6 @@ EOF
 
 cat << EOF > ${CUTTER_SUBATTRIBUTES}
 {
-    "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
     "id": "${PLASMACUTTER_ID}",
     "type": "https://industry-fusion.com/types/v0.9/${KAFKACAT_ENTITY_PLASMACUTTER_NAME}",
     "https://industry-fusion.com/types/v0.9/state": [
@@ -192,7 +189,6 @@ EOF
 
 cat << EOF > ${GEOCUTTER_ATTRIBUTES}
 {
-    "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
     "id": "${GEOCUTTER_ID}",
     "type": "https://industry-fusion.com/types/v0.9/${KAFKACAT_ENTITY_PLASMACUTTER_NAME}",
     "https://uri.etsi.org/ngsi-ld/location": [
@@ -322,7 +318,7 @@ get_token() {
 # $1: auth token
 # $2: filename which contains entity to create
 create_ngsild() {
-    curl -vv -X POST -H "Authorization: Bearer $1" -d @"$2" http://ngsild.local/ngsi-ld/v1/entities/ -H "Content-Type: application/ld+json"
+    curl -vv -X POST -H "Authorization: Bearer $1" -d @"$2" http://ngsild.local/ngsi-ld/v1/entities/ -H "Content-Type: application/json"
 }
 
 
@@ -330,7 +326,7 @@ create_ngsild() {
 # $1: auth token
 # $2: id of entity to delete
 delete_ngsild() {
-    curl -vv -X DELETE -H "Authorization: Bearer $1" http://ngsild.local/ngsi-ld/v1/entities/"$2" -H "Content-Type: application/ld+json"
+    curl -vv -X DELETE -H "Authorization: Bearer $1" http://ngsild.local/ngsi-ld/v1/entities/"$2" -H "Content-Type: application/json"
 }
 
 setup() {
